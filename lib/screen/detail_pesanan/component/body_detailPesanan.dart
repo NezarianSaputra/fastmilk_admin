@@ -10,8 +10,11 @@ class BodyDetailPesanan extends StatefulWidget {
 }
 
 class _BodyDetailPesananState extends State<BodyDetailPesanan> {
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+    print(data);
     SizeConfig().init(context);
     return Container(
       width: SizeConfig.blockSizeHorizontal * 100,
@@ -24,7 +27,7 @@ class _BodyDetailPesananState extends State<BodyDetailPesanan> {
             child: SvgPicture.asset('assets/images/Admin.svg'),
           ),
           Text(
-            "Budi",
+            data['Id_Pelanggan'],
             style: TextStyle(
                 color: Colors.black, fontSize: 22, fontFamily: 'ABeeZee'),
           ),
@@ -57,7 +60,7 @@ class _BodyDetailPesananState extends State<BodyDetailPesanan> {
                           SizedBox(
                             width: SizeConfig.blockSizeHorizontal * 2,
                           ),
-                          Text("30-05-2021")
+                          Text(data['Tanggal_Pesanan'])
                         ],
                       )),
                     ),
@@ -104,8 +107,7 @@ class _BodyDetailPesananState extends State<BodyDetailPesanan> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Bandung, Jawa Barat"),
-                              Text("Budi - 40265")
+                              Text(data['Lokasi_Pengiriman_Pesanan']),
                             ],
                           )
                         ],
@@ -131,10 +133,7 @@ class _BodyDetailPesananState extends State<BodyDetailPesanan> {
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Susu Murni (1)"),
-                              Text("Susu Coklat (1)")
-                            ],
+                            children: [Text(data['Id_Produk'])],
                           )
                         ],
                       )),

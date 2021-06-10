@@ -136,7 +136,8 @@ class _BodyDataState extends State<BodyData> {
                                               press: () {
                                                 snapshot
                                                     .data.docs[index].reference
-                                                    .delete();
+                                                    .delete().whenComplete(() =>
+                                                        Navigator.pop(context));
                                               },
                                             ),
                                           ],
