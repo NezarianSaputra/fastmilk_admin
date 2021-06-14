@@ -14,7 +14,7 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
   Widget build(BuildContext context) {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     CollectionReference pesanan = firebaseFirestore.collection('Pesanan');
-    // CollectionReference pelanggan = firebaseFirestore.collection('Pelanggan');
+    CollectionReference pelanggan = firebaseFirestore.collection('Pelanggan');
 
     return StreamBuilder(
         stream: pesanan.orderBy('Tanggal_Pesanan').snapshots(),
@@ -26,13 +26,13 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
               itemCount: snapshot.data.docs.length,
               itemBuilder: (context, index) {
                 var doc = snapshot.data.docs[index];
-                // String id_pelanggan = doc['Id_Pelanggan'].toString();
+                final String id_pelanggan = doc['Id_Pelanggan'];
                 return ListTile(
                   leading: SvgPicture.asset('assets/images/Admin.svg'),
                   title: Text(doc['Id_Pelanggan']),
                   // StreamBuilder(
                   //     stream: pelanggan
-                  //         .doc('$id_pelanggan')
+                  //         .doc('00pViYlt1BFq9RbW6qr4')
                   //         // .where(pelanggan.id, isEqualTo: id_pelanggan)
                   //         .snapshots(),
                   //     builder: (context, snapshot) {
