@@ -20,7 +20,7 @@ class ProfileAdmin extends StatelessWidget {
               )),
           title: Text(
             'PROFILE Admin',
-            style: TextStyle(fontSize: 17),
+            style: TextStyle(fontSize: 17, color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: Color(0xFFFE931D),

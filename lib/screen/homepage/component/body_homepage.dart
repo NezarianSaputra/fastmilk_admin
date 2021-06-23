@@ -242,9 +242,7 @@ class _BodyHomeState extends State<BodyHome> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           borderSide: BorderSide(width: 1, color: Colors.grey),
-                          onPressed: () {
-                            Navigator.pushNamed(context, DataPegawai.routeName);
-                          },
+                          onPressed: () {},
                           child: Row(
                             children: [
                               Image.asset(
