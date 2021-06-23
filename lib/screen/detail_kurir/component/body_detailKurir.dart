@@ -1,3 +1,4 @@
+import 'package:fastmilk_admin/screen/data_pesanan/data_pesanan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -60,7 +61,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                   IconButton(
                     icon: Icon(Icons.close),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, DataPesanan.routeName);
                     },
                   ),
                 ],
@@ -72,8 +73,11 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
     );
   }
 
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+    print(data);
     SizeConfig().init(context);
     return Container(
       child: Column(
@@ -87,7 +91,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                   children: [
                     SvgPicture.asset('assets/images/Admin.svg'),
                     Text(
-                      "Miwpaw Ganteng",
+                      data['Nama'],
                       style: TextStyle(color: Color(0xFFFE931D), fontSize: 20),
                     )
                   ],
@@ -115,7 +119,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                           width: 15,
                           child: Text(':', style: TextStyle(fontSize: 18))),
                       Flexible(
-                          child: Text("miwpaw123@gmail.com",
+                          child: Text(data['Email'],
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 18),
                               overflow: TextOverflow.ellipsis)),
@@ -140,7 +144,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                           width: 15,
                           child: Text(':', style: TextStyle(fontSize: 18))),
                       Flexible(
-                          child: Text("Miwpaw Ganteng",
+                          child: Text(data['Nama'],
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 18),
                               overflow: TextOverflow.ellipsis)),
@@ -166,7 +170,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                           width: 15,
                           child: Text(':', style: TextStyle(fontSize: 18))),
                       Flexible(
-                          child: Text("Jl.Pros Diamond No.182",
+                          child: Text(data['Alamat'],
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 18),
                               overflow: TextOverflow.ellipsis)),
@@ -192,7 +196,7 @@ class _BodyDetailKurirState extends State<BodyDetailKurir> {
                           width: 15,
                           child: Text(':', style: TextStyle(fontSize: 18))),
                       Flexible(
-                          child: Text("085156942363",
+                          child: Text(data['No_telp'],
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 18),
                               overflow: TextOverflow.ellipsis)),

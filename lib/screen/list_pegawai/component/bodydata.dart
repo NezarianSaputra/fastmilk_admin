@@ -53,8 +53,7 @@ class _BodyDataState extends State<BodyData> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   onTap: () {
-                    Navigator.pushReplacementNamed(
-                        context, ProfilePegawai.routeName,
+                    Navigator.pushNamed(context, ProfilePegawai.routeName,
                         arguments: {
                           'Nama': doc.data()['Nama'],
                           'Email': doc.data()['Email'],
@@ -136,7 +135,9 @@ class _BodyDataState extends State<BodyData> {
                                               press: () {
                                                 snapshot
                                                     .data.docs[index].reference
-                                                    .delete();
+                                                    .delete()
+                                                    .whenComplete(() =>
+                                                        Navigator.pop(context));
                                               },
                                             ),
                                           ],

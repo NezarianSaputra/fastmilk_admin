@@ -8,15 +8,9 @@ class DataPesanan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(HomePage.routeName);
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         title: Text(
           'DATA PESANAN',
           style: TextStyle(fontSize: 17, color: Colors.white),

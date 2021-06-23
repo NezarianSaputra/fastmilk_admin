@@ -50,17 +50,16 @@ class _BodyDataBarangState extends State<BodyDataBarang> {
                 DocumentSnapshot doc = snapshot.data.docs[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.of(context).pushReplacementNamed(
-                        DetailBarang.routeName,
-                        arguments: {
-                          'Produk_id': doc.data()['Produk_id'],
-                          'Jenis': doc.data()['Jenis'],
-                          'Rasa': doc.data()['Rasa'],
-                          'Stok': doc.data()['Stok'],
-                          'Harga': doc.data()['Harga'],
-                          'Berat': doc.data()['Berat'],
-                          'Kategori': doc.data()['Kategori'],
-                        });
+                    Navigator.of(context)
+                        .pushNamed(DetailBarang.routeName, arguments: {
+                      'Produk_id': doc.data()['Produk_id'],
+                      'Jenis': doc.data()['Jenis'],
+                      'Rasa': doc.data()['Rasa'],
+                      'Stok': doc.data()['Stok'],
+                      'Harga': doc.data()['Harga'],
+                      'Berat': doc.data()['Berat'],
+                      'Kategori': doc.data()['Kategori'],
+                    });
                   },
                   child: Card(
                     child: Column(

@@ -7,14 +7,9 @@ class EditBarang extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         title: Text('EDIT BARANG',
             style: TextStyle(fontSize: 17, color: Colors.white)),
         centerTitle: true,
