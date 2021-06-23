@@ -70,6 +70,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  String _error;
 
   bool hidePassword = true;
   @override
@@ -78,29 +79,66 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
+          showAlert(),
           buildEmailTextFormField(),
           buildPassTextFormField(),
           SizedBox(height: SizeConfig.blockSizeVertical * 5),
-          DefaultButton(
-            text: "Masuk",
-            press: () {
-              context.read<AuthServices>().login(
-                  email: emailController.text.trim(),
-                  password: passwordController.text.trim());
-              if (_formKey.currentState.validate()) {
-                final String email = emailController.text.trim();
-                final String password = passwordController.text.trim();
-
-                //   //   // if (context.read<AuthServices>().login(email, password) !=
-                //   //   //     null) {
-                //   //   // Navigator.pushNamed(context, HomePage.routeName);
-                //   //   // }
-                return print(email);
-              }
-            },
-          ),
+          DefaultButton(text: "Masuk", press: submit),
         ],
       ),
+    );
+  }
+
+  void submit() async {
+    if (_formKey.currentState.validate()) {
+      try {
+        await context.read<AuthServices>().login(
+            email: emailController.text.trim(),
+            password: passwordController.text.trim());
+      } catch (e) {
+        print(e);
+        setState(() {
+          _error = e.message;
+        });
+      }
+    }
+  }
+
+  Widget showAlert() {
+    if (_error != null) {
+      return Container(
+        color: Colors.amberAccent,
+        width: double.infinity,
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Icon(Icons.error_outline),
+            ),
+            Expanded(
+              child: Text(
+                _error,
+                maxLines: 3,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  setState(() {
+                    _error = null;
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    return SizedBox(
+      height: 0,
     );
   }
 

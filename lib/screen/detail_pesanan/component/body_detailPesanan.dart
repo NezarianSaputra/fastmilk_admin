@@ -176,7 +176,9 @@ class _BodyDetailPesananState extends State<BodyDetailPesanan> {
                 ),
                 color: kPrimaryColor,
                 onPressed: () {
-                  Navigator.of(context).pushNamed(PilihKurir.routeName);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return PilihKurir();
+                  }));
                 },
                 child: Text(
                   "Terima Pesanan",

@@ -15,18 +15,12 @@ class TambahPegawai extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         title: Text(
           'TAMBAH DATA PEGAWAI',
-          style: TextStyle(fontSize: 17, color:  Colors.white),
+          style: TextStyle(fontSize: 17, color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: Color(0xFFFE931D),

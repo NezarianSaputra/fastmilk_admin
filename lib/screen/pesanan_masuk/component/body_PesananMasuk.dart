@@ -49,18 +49,17 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
                     color: kPrimaryColor,
                   ),
                   onTap: () {
-                    Navigator.of(context).pushReplacementNamed(
-                        DetailPesanan.routeName,
-                        arguments: {
-                          'Id_Order': doc.data()['Produk_id'],
-                          'Id_Pelanggan': doc.data()['Id_Pelanggan'],
-                          'Id_Produk': doc.data()['Id_Produk'],
-                          'Jumlah_Pesanan': doc.data()['Jumlah_Pesanan'],
-                          'Lokasi_Pengiriman_Pesanan':
-                              doc.data()['Lokasi_Pengiriman_Pesanan'],
-                          'Status_Pesanan': doc.data()['Status_Pesanan'],
-                          'Tanggal_Pesanan': doc.data()['Tanggal_Pesanan'],
-                        });
+                    Navigator.of(context)
+                        .pushNamed(DetailPesanan.routeName, arguments: {
+                      'Id_Order': doc.data()['Produk_id'],
+                      'Id_Pelanggan': doc.data()['Id_Pelanggan'],
+                      'Id_Produk': doc.data()['Id_Produk'],
+                      'Jumlah_Pesanan': doc.data()['Jumlah_Pesanan'],
+                      'Lokasi_Pengiriman_Pesanan':
+                          doc.data()['Lokasi_Pengiriman_Pesanan'],
+                      'Status_Pesanan': doc.data()['Status_Pesanan'],
+                      'Tanggal_Pesanan': doc.data()['Tanggal_Pesanan'],
+                    });
                   },
                 );
               },

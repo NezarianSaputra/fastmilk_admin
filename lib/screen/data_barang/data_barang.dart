@@ -21,20 +21,14 @@ class DataBarang extends StatelessWidget {
             child: Icon(Icons.add, color: Color(0xFFFE931D)),
           ),
           appBar: AppBar(
-            automaticallyImplyLeading: false,
             title: Text('DATA BARANG',
                 style: TextStyle(
                     fontSize: 17, fontFamily: 'ABeeZee', color: Colors.white)),
             centerTitle: true,
             backgroundColor: Color(0xFFFE931D),
-            leading: MaterialButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(HomePage.routeName);
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
           ),
           body: BodyDataBarang()),
     );
