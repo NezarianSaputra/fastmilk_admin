@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fastmilk_admin/component/default_button.dart';
 import 'package:fastmilk_admin/constants.dart';
 import 'package:fastmilk_admin/screen/data_barang/data_barang.dart';
@@ -30,6 +31,9 @@ class _BodyHomeState extends State<BodyHome> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
+    final uid = user.uid;
     SizeConfig().init(context);
     return SafeArea(
       child: SingleChildScrollView(
@@ -56,14 +60,26 @@ class _BodyHomeState extends State<BodyHome> {
                                     fontFamily: "Nunito",
                                     fontWeight: FontWeight.bold),
                               ),
-                              Text(
-                                "Ahmad",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontFamily: "Nunito",
-                                    fontWeight: FontWeight.bold),
-                              )
+                              StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('Admin')
+                                      .doc(uid)
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                          snapshot.data
+                                              .data()['Nama_Admin']
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontFamily: "Nunito",
+                                              fontWeight: FontWeight.bold));
+                                    } else {
+                                      return Text('Loading');
+                                    }
+                                  }),
                             ],
                           ),
                         ),

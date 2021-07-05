@@ -10,6 +10,7 @@ class BodyPesananMasuk extends StatefulWidget {
 }
 
 class _BodyPesananMasukState extends State<BodyPesananMasuk> {
+  bool status = true;
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -29,6 +30,7 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
                 final String id_pelanggan = doc['Id_Pelanggan'];
                 return ListTile(
                   leading: SvgPicture.asset('assets/images/Admin.svg'),
+
                   title: Text(doc['Id_Pelanggan']),
                   // StreamBuilder(
                   //     stream: pelanggan
@@ -41,13 +43,20 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
                   //           snapshot.data.data()['namaLengkap'].toString(),
                   //         );
                   //       } else {
-                  //         return Text('Loading..');
+                  //         return Text('Loading..');e\]]]]]]]]]]\
                   //       }
                   //     }),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    color: kPrimaryColor,
-                  ),
+                  trailing: (status == true)
+                      ? Icon(
+                          Icons.arrow_forward_ios,
+                          color: kPrimaryColor,
+                        )
+                      : Icon(
+                          Icons.done,
+                          color: kPrimaryColor,
+                        ),
+
+                  // selected: status,
                   onTap: () {
                     Navigator.of(context)
                         .pushNamed(DetailPesanan.routeName, arguments: {
@@ -59,6 +68,9 @@ class _BodyPesananMasukState extends State<BodyPesananMasuk> {
                           doc.data()['Lokasi_Pengiriman_Pesanan'],
                       'Status_Pesanan': doc.data()['Status_Pesanan'],
                       'Tanggal_Pesanan': doc.data()['Tanggal_Pesanan'],
+                    });
+                    setState(() {
+                      status = false;
                     });
                   },
                 );
